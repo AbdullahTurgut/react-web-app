@@ -5,25 +5,26 @@ interface Props {
 }
 const TaskList = ({ tasks }: Props) => {
   return (
-    <div>
-      <table border={1}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task.taskId}>
-              <td>{task.name}</td>
-              <td>{task.status}</td>
-              <td>{task.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="card">
+      <h5 className="card-header">
+        Name
+        <span className="float-end">Status</span>
+      </h5>
+      <div className="card-body">
+        {tasks.map((task) => (
+          <div className="d-flex justify-content-between border-bottom-1 p-3 text-dark">
+            <div className="card-title m-0">
+              <h5>{task.name}</h5>
+              <span className="fst-italic">{task.date}</span>
+            </div>
+            <div className="card-subtitle">
+              <span className="badge rounded-pill app-primary-bg-color">
+                {task.status}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
