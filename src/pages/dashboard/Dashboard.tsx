@@ -1,5 +1,4 @@
 import TaskList from "../../components/TaskList";
-import TaskNavbar from "../../components/TaskNavbar";
 import UseTasks from "../../hooks/UseTasks";
 
 const Dashboard = () => {
