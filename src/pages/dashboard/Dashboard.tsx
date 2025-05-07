@@ -1,14 +1,16 @@
-import ExpenseList from "../../components/ExpenseList";
-import useExpenses from "../../hooks/UseExpenses";
+import TaskList from "../../components/TaskList";
+import UseTasks from "../../hooks/UseTasks";
 
 const Dashboard = () => {
-  const { expenses, error, isLoading } = useExpenses();
+  //const { expenses, error, isLoading } = useExpenses();
+  //  <ExpenseList expenses={expenses} />
 
+  const { tasks, error, isLoading } = UseTasks();
   return (
     <div>
       {isLoading && <p>Fetching for list...</p>}
       {error && <p>{error}</p>}
-      <ExpenseList expenses={expenses} />
+      <TaskList tasks={tasks} />
     </div>
   );
 };
