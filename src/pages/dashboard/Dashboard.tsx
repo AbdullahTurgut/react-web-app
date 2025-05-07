@@ -1,4 +1,5 @@
 import TaskList from "../../components/TaskList";
+import TaskNavbar from "../../components/TaskNavbar";
 import UseTasks from "../../hooks/UseTasks";
 
 const Dashboard = () => {
@@ -7,7 +8,7 @@ const Dashboard = () => {
 
   const { tasks, error, isLoading } = UseTasks();
   return (
-    <div>
+    <div className="container">
       {isLoading && <p>Fetching for list...</p>}
       {error && <p>{error}</p>}
       <TaskList tasks={tasks} />
