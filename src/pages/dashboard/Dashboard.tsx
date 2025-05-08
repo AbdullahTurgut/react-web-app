@@ -1,11 +1,7 @@
-import TaskList from "../../components/TaskList";
-import TaskNavbar from "../../components/TaskNavbar";
-import UseTasks from "../../hooks/UseTasks";
+import TaskList from "../../components/task/TaskList";
+import UseTasks from "../../hooks/task/UseTasks";
 
 const Dashboard = () => {
-  //const { expenses, error, isLoading } = useExpenses();
-  //  <ExpenseList expenses={expenses} />
-
   const { tasks, error, isLoading } = UseTasks();
   return (
     <div className="container">

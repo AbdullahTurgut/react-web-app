@@ -1,4 +1,4 @@
-import type { Expense } from "../model/Expense";
+import type { Expense } from "../../model/expense/Expense";
 
 interface Props {
   expenses: Expense[];

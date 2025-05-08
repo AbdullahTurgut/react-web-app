@@ -1,7 +1,8 @@
-import taskLogo from "../assets/tasklogo.webp";
+import { Link } from "react-router-dom";
+import taskLogo from "../../assets/tasklogo.webp";
 const TaskLogo = () => {
   return (
-    <a className="navbar-brand" href="#">
+    <Link className="navbar-brand" to={"/"}>
       <img
         src={taskLogo}
         alt="logo"
@@ -9,7 +10,7 @@ const TaskLogo = () => {
         height={48}
         className="rounded-circle"
       />
-    </a>
+    </Link>
   );
 };
 

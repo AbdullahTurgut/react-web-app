@@ -1,5 +1,6 @@
 import { FaBars } from "react-icons/fa";
 import TaskLogo from "./TaskLogo";
+import { NavLink } from "react-router-dom";
 
 const TaskNavbar = () => {
   return (
@@ -8,17 +9,25 @@ const TaskNavbar = () => {
         <TaskLogo />
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav">
-            <a className="nav-link active" aria-current="page" href="#">
+            <NavLink className="nav-link" to={"/"}>
               Dashboard
-            </a>
-            <a className="nav-link" href="#">
+            </NavLink>
+
+            <NavLink className="nav-link" to={"/new-task"}>
               New Task
-            </a>
+            </NavLink>
+            <NavLink className="nav-link" to={"/reports"}>
+              Task Reports
+            </NavLink>
           </div>
         </div>
         <div className="d-flex" role="search">
-          <button className="btn btn-sm btn-outline-light">Register</button>
-          <button className="btn btn-sm btn-outline-light mx-1">Login</button>
+          <NavLink className="btn btn-sm btn-outline-light" to={"/register"}>
+            Register
+          </NavLink>
+          <NavLink className="btn btn-sm btn-outline-light mx-1" to={"/login"}>
+            Login
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
