@@ -1,17 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TaskList from "../../components/task/TaskList";
 import UseTasks from "../../hooks/task/UseTasks";
 import DashboardStatus from "./DashboardStatus";
 
 const Dashboard = () => {
   const loggedInUser: string = "user@gmail.com";
+  const [totalStatus, setTotalStatus] = useState<number>(0);
   const { tasks, error, isLoading } = UseTasks();
 
-  function getTotalStatus(): number {
-    let i = 0;
-    tasks.map((task) => (task.status === "in_progress" ? i++ : 0));
-    return i;
-  }
+  useEffect(() => {
+    function getTotalStatus(): number {
+      let i = 0;
+      tasks.forEach((task) => {
+        if (task.status === "in_progress") {
+          i += 1;
+        }
+      });
+      return i;
+    }
+
+    const totalStatus = getTotalStatus();
+    setTotalStatus(totalStatus);
+  }, [tasks]);
 
   return (
     <div className="container">
@@ -19,7 +29,7 @@ const Dashboard = () => {
       {error && <p>{error}</p>}
       <DashboardStatus
         loggedInUser={loggedInUser}
-        totalInProgressStatus={getTotalStatus()}
+        totalInProgressStatus={totalStatus}
       />
       <hr />
       <TaskList tasks={tasks} />

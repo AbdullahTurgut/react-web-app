@@ -14,7 +14,7 @@ const UseTasks = () => {
       })
       .catch((error) => setError(error.message))
       .finally(() => setIsLoading(false));
-  });
+  }, []);
 
   return { tasks, error, isLoading };
 };
