@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Task } from "../../model/task/Task";
 import { formatStatus } from "../../utils/CurrencyUtils";
 import { getFormatTaskDate } from "../../utils/DateUtils";
@@ -14,7 +15,11 @@ const TaskList = ({ tasks }: Props) => {
       </h5>
       <div className="card-body">
         {tasks.map((task) => (
-          <div key={task.taskId}>
+          <Link
+            key={task.taskId}
+            to={`/view-details/${task.taskId}`}
+            style={{ textDecoration: "none" }}
+          >
             <div className="d-flex justify-content-between border-bottom-1 p-3 text-dark">
               <div className="card-title m-0">
                 <h5>{task.name}</h5>
@@ -28,7 +33,7 @@ const TaskList = ({ tasks }: Props) => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
