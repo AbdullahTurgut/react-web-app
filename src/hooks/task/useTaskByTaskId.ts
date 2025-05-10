@@ -15,7 +15,7 @@ const useTaskByTaskId = (taskId: string) => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  return { task, errorMessage, isLoading };
+  return { task, errorMessage, isLoading, setIsLoading, setErrorMessage };
 };
 
 export default useTaskByTaskId;

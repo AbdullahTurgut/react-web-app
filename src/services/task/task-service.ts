@@ -8,3 +8,7 @@ export const getTasks = () => {
 export const getTaskByTaskId = (taskId: string) => {
   return apiClient.get<Task>(`/tasks/${taskId}`);
 };
+
+export const deleteTaskByTaskId = (taskId: string) => {
+  return apiClient.delete(`/tasks/${taskId}/delete`);
+};
