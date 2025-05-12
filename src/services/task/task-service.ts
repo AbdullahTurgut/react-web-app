@@ -13,6 +13,9 @@ export const deleteTaskByTaskId = (taskId: string) => {
   return apiClient.delete(`/tasks/${taskId}/delete`);
 };
 
-export const createTask = (task: Task) => {
+export const saveOrUpdateTask = (task: Task) => {
+  if (task.taskId !== undefined || task.taskId != null) {
+    return apiClient.put<Task>(`/tasks/${task.taskId}/update`, task);
+  }
   return apiClient.post<Task>("/tasks/save", task);
 };

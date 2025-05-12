@@ -3,25 +3,50 @@ import type { Task } from "../../model/task/Task";
 import taskValidationSchema from "../../validation/TaskValidationSchema";
 import Dropdown from "../../components/task/Dropdown";
 import { taskCategories } from "../../utils/AppConstants";
-import { createTask } from "../../services/task/task-service";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  saveOrUpdateTask,
+  getTaskByTaskId,
+} from "../../services/task/task-service";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NewTask = () => {
+  const { taskId } = useParams<{ taskId: string }>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [initialValues, setInitialValues] = useState<Task>({
+    name: "",
+    status: "in_progress",
+    category: "",
+    date: new Date().toISOString().split("T")[0],
+  });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (taskId) {
+      // call the service method to get the existing task
+      setIsLoading(true);
+      getTaskByTaskId(taskId)
+        .then((response) => {
+          if (response && response.data) {
+            setInitialValues(response.data);
+          }
+        })
+        .catch((error) => setErrorMessage(error.message))
+        .finally(() => setIsLoading(false));
+    }
+  }, [taskId]);
+
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      status: "in_progress",
-      category: "",
-      date: new Date().toISOString().split("T")[0],
-    },
+    initialValues,
+    enableReinitialize: true,
     onSubmit: (values: Task) => {
-      createTask(values)
+      saveOrUpdateTask(values)
         .then((response) => {
           if (response && response.status === 201) {
             navigate("/");
+          } else if (response && response.status === 200) {
+            navigate(`/view-details/${taskId}`);
           }
         })
         .catch((error) => {
@@ -37,6 +62,7 @@ const NewTask = () => {
         {errorMessage && (
           <p className="text-danger fst-italic">{errorMessage}</p>
         )}
+        {isLoading && <p>Loading...</p>}
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">

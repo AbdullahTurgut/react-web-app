@@ -19,6 +19,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/new-task" element={<NewTask />} />
         <Route path="/view-details/:taskId" element={<TaskDetails />} />
+        <Route path="/edit/:taskId" element={<NewTask />} />
         <Route path="/reports" element={<TaskReports />} />
       </Routes>
     </BrowserRouter>
