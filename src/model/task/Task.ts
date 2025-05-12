@@ -3,5 +3,6 @@ export interface Task {
   taskId?: string;
   name: string;
   status: string;
+  category: string;
   date: string;
 }

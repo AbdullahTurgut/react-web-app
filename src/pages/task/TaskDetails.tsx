@@ -66,6 +66,10 @@ const TaskDetails = () => {
                 <td>{task?.status ? formatStatus(task?.status) : "N/A"}</td>
               </tr>
               <tr>
+                <th>Category</th>
+                <td>{task?.category ? task.category : "N/A"}</td>
+              </tr>
+              <tr>
                 <th>Date</th>
                 <td>{task?.date ? getFormatTaskDate(task?.date) : "N/A"}</td>
               </tr>

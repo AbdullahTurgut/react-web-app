@@ -12,3 +12,7 @@ export const getTaskByTaskId = (taskId: string) => {
 export const deleteTaskByTaskId = (taskId: string) => {
   return apiClient.delete(`/tasks/${taskId}/delete`);
 };
+
+export const createTask = (task: Task) => {
+  return apiClient.post<Task>("/tasks/save", task);
+};
