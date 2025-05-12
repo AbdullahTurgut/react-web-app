@@ -9,9 +9,10 @@ interface Props {
 const TaskList = ({ tasks }: Props) => {
   return (
     <div className="card">
-      <h5 className="card-header">
-        Name
-        <span className="float-end">Status</span>
+      <h5 className="card-header d-flex justify-content-between">
+        <span>Name</span>
+        <span>Category</span>
+        <span>Status</span>
       </h5>
       <div className="card-body">
         {tasks.map((task) => (
@@ -20,14 +21,22 @@ const TaskList = ({ tasks }: Props) => {
             to={`/view-details/${task.taskId}`}
             style={{ textDecoration: "none" }}
           >
-            <div className="d-flex justify-content-between border-bottom-1 p-3 text-dark">
-              <div className="card-title m-0">
-                <h5>{task.name}</h5>
+            <div className="d-flex justify-content-between align-items-center border-bottom p-3 text-dark">
+              {/* Name */}
+              <div className="text-start" style={{ flex: 1 }}>
+                <h5 className="m-0">{task.name}</h5>
                 <span className="fst-italic">
                   {getFormatTaskDate(task.date)}
                 </span>
               </div>
-              <div className="card-subtitle">
+
+              {/* Category */}
+              <div className="text-center" style={{ flex: 1 }}>
+                <span className="fw-semibold">{task.category}</span>
+              </div>
+
+              {/* Status */}
+              <div className="text-end" style={{ flex: 1 }}>
                 <span className="badge rounded-pill app-primary-bg-color">
                   {formatStatus(task.status)}
                 </span>
