@@ -5,10 +5,10 @@ body,html {
     font-size: 1.1em;
 }
 .app-primary-color {
-    color: #c10de9
+    color: #910de9
 }
 nav, .app-primary-bg-color {
-    background-color: #c10de9;
+    background-color: #910de9;
 }
 
 .card-body {
