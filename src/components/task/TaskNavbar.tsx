@@ -2,14 +2,11 @@ import { FaBars } from "react-icons/fa";
 import TaskLogo from "./TaskLogo";
 import { NavLink } from "react-router-dom";
 import { UseAuthContext } from "../../hooks/UseAuthContext";
+import { UseSignout } from "../../hooks/UseSignout";
 
 const TaskNavbar = () => {
-  const { isAuthenticated, updateAuth } = UseAuthContext();
-  const handleLogout = () => {
-    localStorage.removeItem("taskUser");
-    updateAuth(false);
-    window.location.href = "/";
-  };
+  const { isAuthenticated } = UseAuthContext();
+  const { logout } = UseSignout();
 
   return (
     <nav className="navbar navbar-expand-lg">
@@ -54,7 +51,7 @@ const TaskNavbar = () => {
             <>
               <button
                 className="btn btn-sm btn-outline-light mx-1"
-                onClick={handleLogout}
+                onClick={logout}
               >
                 Logout
               </button>

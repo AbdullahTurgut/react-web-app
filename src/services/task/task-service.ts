@@ -14,7 +14,7 @@ export const deleteTaskByTaskId = (taskId: string) => {
 };
 
 export const saveOrUpdateTask = (task: Task) => {
-  if (task.taskId !== undefined || task.taskId != null) {
+  if (task.taskId) {
     return apiClient.put<Task>(`/tasks/${task.taskId}/update`, task);
   }
   return apiClient.post<Task>("/tasks/save", task);
