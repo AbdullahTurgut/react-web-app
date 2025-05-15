@@ -6,7 +6,7 @@ import DashboardStatus from "./DashboardStatus";
 const Dashboard = () => {
   const loggedInUser: string = "user@gmail.com";
   const [totalStatus, setTotalStatus] = useState<number>(0);
-  const { tasks, error, isLoading } = UseTasks();
+  const { tasks, isLoading } = UseTasks();
 
   useEffect(() => {
     function getTotalStatus(): number {
@@ -26,7 +26,6 @@ const Dashboard = () => {
   return (
     <div className="container">
       {isLoading && <p>Fetching for list...</p>}
-      {error && <p>{error}</p>}
       <DashboardStatus
         loggedInUser={loggedInUser}
         totalInProgressStatus={totalStatus}
