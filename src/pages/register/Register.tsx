@@ -1,5 +1,5 @@
 import ProfileValidationSchema from "../../validation/ProfileValidationSchema";
-import type { Profile } from "../../model/task/Profile";
+import type { Profile } from "../../model/Profile";
 import { useFormik } from "formik";
 import { useRegister } from "../../hooks/task/UseRegister";
 
@@ -106,7 +106,7 @@ const Register = () => {
             ) : null}
           </div>
           <button
-            className="btn btn-sm btn-primary btn-outline-light"
+            className="btn btn-sm app-primary-bg-color btn-outline-light"
             type="submit"
           >
             Register

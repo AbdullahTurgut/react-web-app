@@ -1,33 +1,66 @@
 import { FaBars } from "react-icons/fa";
 import TaskLogo from "./TaskLogo";
 import { NavLink } from "react-router-dom";
+import { UseAuthContext } from "../../hooks/UseAuthContext";
 
 const TaskNavbar = () => {
+  const { isAuthenticated, updateAuth } = UseAuthContext();
+  const handleLogout = () => {
+    localStorage.removeItem("taskUser");
+    updateAuth(false);
+    window.location.href = "/";
+  };
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container">
         <TaskLogo />
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav">
-            <NavLink className="nav-link" to={"/"}>
-              Dashboard
-            </NavLink>
+            {isAuthenticated ? (
+              <>
+                <NavLink className="nav-link" to={"/"}>
+                  Dashboard
+                </NavLink>
 
-            <NavLink className="nav-link" to={"/new-task"}>
-              New Task
-            </NavLink>
-            <NavLink className="nav-link" to={"/reports"}>
-              Task Reports
-            </NavLink>
+                <NavLink className="nav-link" to={"/new-task"}>
+                  New Task
+                </NavLink>
+                <NavLink className="nav-link" to={"/reports"}>
+                  Task Reports
+                </NavLink>
+              </>
+            ) : null}
           </div>
         </div>
         <div className="d-flex" role="search">
-          <NavLink className="btn btn-sm btn-outline-light" to={"/register"}>
-            Register
-          </NavLink>
-          <NavLink className="btn btn-sm btn-outline-light mx-1" to={"/login"}>
-            Login
-          </NavLink>
+          {!isAuthenticated ? (
+            <>
+              <NavLink
+                className="btn btn-sm btn-outline-light"
+                to={"/register"}
+              >
+                Register
+              </NavLink>
+              <NavLink
+                className="btn btn-sm btn-outline-light mx-1"
+                to={"/login"}
+              >
+                Login
+              </NavLink>
+            </>
+          ) : null}
+          {isAuthenticated ? (
+            <>
+              <button
+                className="btn btn-sm btn-outline-light mx-1"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          ) : null}
+
           <button
             className="navbar-toggler"
             type="button"

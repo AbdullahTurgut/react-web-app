@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Profile } from "../../model/task/Profile";
+import type { Profile } from "../../model/Profile";
 import { createProfile } from "../../services/task/auth-service";
 
 export const useRegister = () => {
@@ -16,7 +16,7 @@ export const useRegister = () => {
         }
       })
       .catch((error) => {
-        console.error("Error during registration:", error);
+        //console.error("Error during registration:", error);
         setErrorMessage(error.message);
       })
       .finally(() => {
