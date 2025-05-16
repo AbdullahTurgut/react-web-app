@@ -27,3 +27,13 @@ nav, .app-primary-bg-color {
     color: white;
     border-color: white;
 }
+
+.login-background {
+    background-image: url("../src/assets/login-register-bg.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

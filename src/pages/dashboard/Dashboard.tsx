@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import TaskList from "../../components/task/TaskList";
 import UseTasks from "../../hooks/task/UseTasks";
 import DashboardStatus from "./DashboardStatus";
+import AppHelper from "../../utils/AppHelper";
 
 const Dashboard = () => {
-  const loggedInUser: string = "user@gmail.com";
+  const loggedInUser: string = AppHelper.getLoggedInUser();
   const [totalStatus, setTotalStatus] = useState<number>(0);
   const { tasks, isLoading } = UseTasks();
 
